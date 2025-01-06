@@ -82,7 +82,7 @@ function App() {
           <div>
             <input
             type='checkbox'
-            value={char}
+            value={char} 
             onChange={() => {
               setChar((prev) => !prev)
             }}
