@@ -1,7 +1,7 @@
 
 //useState, useEffect, useContext
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 // function Car() {
@@ -52,26 +52,72 @@ import './App.css'
 // export default Count
 
 
-function Counter(){
-    const [alphabet, setAlphabet] = useState("A")
-    const [word, setWord] = useState("")
+// function Counter(){
+//     const [alphabet, setAlphabet] = useState("A")
+//     const [word, setWord] = useState("")
 
-    useEffect(() => {
-      setWord(() => alphabet+"ON")
-    }, [alphabet])
+//     useEffect(() => {
+//       setWord(() => alphabet+"ON")
+//     }, [alphabet])
 
-    return(
-      <>
-      <h1>Alphabet: {alphabet}</h1>
-      <button type="button" onClick={() => {
-        setAlphabet((a) => a+"A")}
-    }>
-        Change</button>
-      <h1>word: {word}</h1>
-      </>
-    )
+//     return(
+//       <>
+//       <h1>Alphabet: {alphabet}</h1>
+//       <button type="button" onClick={() => {
+//         setAlphabet((a) => a+"A")}
+//     }>
+//         Change</button>
+//       <h1>word: {word}</h1>
+//       </>
+//     )
+// }
+
+// export default Counter
+
+
+
+function App() {
+  const [inputValue, setInputValue] = useState("");
+  const count = useRef(0);
+
+  useEffect(() => {
+    count.current = count.current + 2;
+  }, [inputValue]);
+
+  return (
+    <>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <h1>Render Count: {count.current}</h1>
+    </>
+  );
 }
 
-export default Counter
+export default App
+// function App() {
+//   const [inputValue, setInputValue] = useState("");
+//   const previousInputValue = useRef("");
+
+//   useEffect(() => {
+//     previousInputValue.current = inputValue;
+//   }, [inputValue]);
+
+//   return (
+//     <>
+//       <input
+//         type="text"
+//         value={inputValue}
+//         onChange={(e) => setInputValue(e.target.value)}
+//       />
+//       <h2>Current Value: {inputValue}</h2>
+//       <h2>Previous Value: {previousInputValue.current}</h2>
+//     </>
+//   );
+// }
+
+// export default App
 
 
